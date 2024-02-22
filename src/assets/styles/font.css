@@ -1,0 +1,7 @@
+@font-face {
+  font-family: vazir;
+  src: url("./../Fonts/Vazir-Bold.ttf") format("truetype");
+}
+* {
+  font-family: vazir;
+}
