@@ -1,0 +1,99 @@
+
+.Log_form {
+  background: rgb(5, 5, 5);
+  width: 40%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  position: absolute;
+  margin-left: 30%;
+  direction: rtl;
+}
+#check{
+  margin-right: 10px;
+}
+.Log_form p {
+  color: red;
+}
+.errortext {
+  direction: rtl;
+}
+.form-control{
+  background: rgb(5, 5, 5);
+  border: none;
+}
+.label{
+  color: aliceblue;
+}
+.radio{
+  color: aliceblue;
+}
+.form-control input {
+  width: 50%;
+  margin-left: 20%;
+  outline: none;
+  display: block;
+  width: 80%;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 20px;
+  background: rgb(255, 255, 255);
+  color: rgb(3, 3, 3);
+}
+
+.log-button {
+  border: none;
+  border-radius: 5px;
+  background-color: #101a72;
+  color: whitesmoke;
+  height: 50px;
+  width: 20%;
+  direction: rtl;
+  margin-left: 40%;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+::placeholder {
+  color: rgb(255, 255, 255);
+  opacity: 0.9;
+}
+
+label > sup {
+  color: red;
+}
+#check {
+  direction: rtl;
+  width: 95%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.formgroup {
+  margin: 10px;
+}
+.radio {
+  margin: 5px;
+}
+#check div {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 750px) {
+  .Log_form {
+  background: rgb(5, 5, 5);
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 6px;
+  position: absolute;
+  margin-left: 0;
+}
+}

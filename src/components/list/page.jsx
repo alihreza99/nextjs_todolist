@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Todo from "../listitem/page";
+import Spinner from "../spinner/index";
 import {
   Button,
   Modal,
@@ -14,14 +15,18 @@ export default function Todolist() {
   const [items, setItems] = useState([]);
   const [input, setInput] = useState("");
   const [itemtitle, setItemtitle] = useState("");
-  const [show, setShow] = useState(false);
-  const [show2, setShow2] = useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalOpen2, setModalOpen2] = React.useState(false);
 
   const [successAlert, setSuccessAlert] = React.useState(false);
   const [dangerAlert, setDangerAlert] = React.useState(false);
+  const [show, setshow] = React.useState(true);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setshow(false);
+    }, 500);
+  });
   useEffect(() => {
     if (localStorage.getItem("localTasks")) {
       setItems(JSON.parse(localStorage.getItem("localTasks")));
@@ -67,7 +72,7 @@ export default function Todolist() {
     setSuccessAlert(true);
     setTimeout(() => {
       setSuccessAlert(false);
-    }, 1500);
+    }, 500);
   }
 
   function deleteall() {
@@ -182,62 +187,66 @@ export default function Todolist() {
         </span>
       </Alert>
 
-      <div id="container">
-        <h1 className="title">لیست تسک ها</h1>
-        <Form id="add-book" onSubmit={additem}>
-          <input
-            data-testid="add-input"
-            ref={(input) => input && input.focus()}
-            value={input}
-            onChange={changeinput}
-            type="text"
-            placeholder="تسک خود را اضافه کنید"
-          />
-          <Button
-            data-testid="add-btn"
-            onClick={additem}
-            type="submit"
-            className="button"
-          >
-            <p className="btn-text-plus">+</p>
-          </Button>
-        </Form>
-        <div id="book-list">
-          <ul data-testid="todolist">
-            {items.length === 0 && (
-              <p className="h4 my-2 p-2 bg-danger border rounded border-black">
-                هیچ تسکی وجود ندارد
-              </p>
-            )}
-            {items.map((item, index) => {
-              return (
-                <Todo
-                  key={index}
-                  title={item.title}
-                  deletehandler={handleShow}
-                />
-              );
-            })}
-          </ul>
-        </div>
+      {show && <Spinner />}
 
-        <div className="info">
-          <div className="info-text">
-            <p className="info-text-item">شما</p>
-            <p className="info-text-item" id="number">
-              {items.length}
-            </p>
-            <p className="info-text-item"> تسک انجام نشده دارید</p>
+      {!show && (
+        <div id="container">
+          <h1 className="title">لیست تسک ها</h1>
+          <Form id="add-book" onSubmit={additem}>
+            <input
+              data-testid="add-input"
+              ref={(input) => input && input.focus()}
+              value={input}
+              onChange={changeinput}
+              type="text"
+              placeholder="تسک خود را اضافه کنید"
+            />
+            <Button
+              data-testid="add-btn"
+              onClick={additem}
+              type="submit"
+              className="button"
+            >
+              <p className="btn-text-plus">+</p>
+            </Button>
+          </Form>
+          <div id="book-list">
+            <ul data-testid="todolist">
+              {items.length === 0 && (
+                <p className="h4 my-2 p-2 bg-danger border rounded border-black">
+                  هیچ تسکی وجود ندارد
+                </p>
+              )}
+              {items.map((item, index) => {
+                return (
+                  <Todo
+                    key={index}
+                    title={item.title}
+                    deletehandler={handleShow}
+                  />
+                );
+              })}
+            </ul>
           </div>
-          <Button
-            data-testid="delete-allbtn"
-            onClick={handleShow2}
-            id="clear-all"
-          >
-            حذف همه
-          </Button>
+
+          <div className="info">
+            <div className="info-text">
+              <p className="info-text-item">شما</p>
+              <p className="info-text-item" id="number">
+                {items.length}
+              </p>
+              <p className="info-text-item"> تسک انجام نشده دارید</p>
+            </div>
+            <Button
+              data-testid="delete-allbtn"
+              onClick={handleShow2}
+              id="clear-all"
+            >
+              حذف همه
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

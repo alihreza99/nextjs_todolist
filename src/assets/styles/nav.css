@@ -1,0 +1,17 @@
+.nav {
+  color: white;
+}
+.spinner {
+  display: "flex";
+  width: 100%;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+
+}
+.loading{
+    width: 20%;
+    height: 200px;
+    margin-top: 100px;
+    margin-left: 40%;
+}
