@@ -1,7 +1,7 @@
 import Todolist from "../src/components/list/page";
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent, userEvent } from "@testing-library/react";
-
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import Login from "../src/components/auth/page";
 describe("todolist", () => {
   it("check if todo item got added", () => {
     const todo = render(<Todolist />);
@@ -64,5 +64,24 @@ describe("todolist", () => {
     fireEvent.click(deleteallbtn);
 
     expect(newTodoItem).not.toBeInTheDocument();
+  });
+});
+
+describe("login", () => {
+  it("input wasnt null", () => {
+    waitFor(() => {
+      const log = render(<Login />);
+
+      const inputElement = log.getByTestId("name-input");
+
+      const addButton = log.getByTestId("formbtn");
+
+      fireEvent.change(inputElement, { target: { value: "New Todo Items" } });
+
+      fireEvent.click(addButton);
+
+      const newTodoItem = log.findByText("New Todo Items");
+      expect(newTodoItem).toBeInTheDocument();
+    });
   });
 });

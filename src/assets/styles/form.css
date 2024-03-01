@@ -30,7 +30,7 @@
 }
 .form-control input {
   width: 50%;
-  margin-left: 20%;
+  margin-right: 10%;
   outline: none;
   display: block;
   width: 80%;
@@ -65,7 +65,13 @@ input[type="number"] {
   color: rgb(255, 255, 255);
   opacity: 0.9;
 }
-
+.formtitle{
+  color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 label > sup {
   color: red;
 }

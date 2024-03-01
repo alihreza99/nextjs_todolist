@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Todo from "../listitem/page";
-import Spinner from "../loading/Loading";
 import {
   Button,
   Modal,

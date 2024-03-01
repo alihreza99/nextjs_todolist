@@ -5,6 +5,8 @@ import * as yup from "yup";
 import { Form, Label, Button } from "reactstrap";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Alert } from "reactstrap";
+
+
 const schema = yup.object().shape({
   firstname: yup.string().required("لطفا نام خود را وارد کنید"),
   lastname: yup.string().required("لطفا نام خانوادگی خود را وارد کنید"),
@@ -33,13 +35,6 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
   const [successAlert, setSuccessAlert] = React.useState(false);
-  const [show, setshow] = React.useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setshow(false);
-    }, 500);
-  });
 
   const onSubmit = () => {
     setSuccessAlert(true);
@@ -63,13 +58,26 @@ const Login = () => {
           <strong>عملیات انجام شد.</strong>
         </span>
       </Alert>
+
+
+      
       <div className="Log_form">
         <Form onSubmit={handleSubmit(onSubmit)}>
+          <div className="formtitle">
+            <h1>صفحه ورود</h1>
+          </div>
+
           <div className="form-control">
             <Label className="label">
               نام<sup>*</sup>
             </Label>
-            <input {...register("firstname")} placeholder="نام" type="text" />
+            <input
+              data-testid="name-input"
+              {...register("firstname")}
+              placeholder="نام"
+              type="text"
+              id="name"
+            />
             <p className="errortext">{errors.firstname?.message}</p>
           </div>
           <div className="form-control">
@@ -77,9 +85,11 @@ const Login = () => {
               نام خانوادگی<sup>*</sup>
             </Label>
             <input
+              data-testid="lastname-input"
               {...register("lastname")}
               placeholder="نام خانوادگی"
               type="text"
+              id="lastname"
             />
             <p className="errortext">{errors.lastname?.message}</p>
           </div>
@@ -87,7 +97,12 @@ const Login = () => {
             <Label className="label">
               شهر<sup>*</sup>
             </Label>
-            <input {...register("county")} placeholder="شهر" type="text" />
+            <input
+              data-testid="city-input"
+              {...register("county")}
+              placeholder="شهر"
+              type="text"
+            />
             <p className="errortext">{errors.county?.message}</p>
           </div>
           <div className="form-control">
@@ -95,6 +110,7 @@ const Login = () => {
               شماره تلفن<sup>*</sup>
             </Label>
             <input
+              data-testid="phon-input"
               {...register("phonenumber")}
               placeholder="شماره تلفن"
               type="number"
@@ -106,6 +122,7 @@ const Login = () => {
               کد ملی<sup>*</sup>
             </Label>
             <input
+              data-testid="id-input"
               {...register("personalid")}
               placeholder="کد ملی"
               type="number"
@@ -116,7 +133,12 @@ const Login = () => {
             <Label className="label">
               ایمیل<sup>*</sup>
             </Label>
-            <input {...register("email")} placeholder="ایمیل" type="email" />
+            <input
+              data-testid="email-input"
+              {...register("email")}
+              placeholder="ایمیل"
+              type="email"
+            />
             <p className="errortext">{errors.email?.message}</p>
           </div>
           <div
@@ -150,7 +172,12 @@ const Login = () => {
           </div>
           <div className="form-control">
             <Label></Label>
-            <Button className="log-button" type="submit">
+            <Button
+              data-testid="formbtn"
+              role="button"
+              className="log-button"
+              type="submit"
+            >
               ورود
             </Button>
           </div>
