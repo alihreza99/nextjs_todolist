@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Todo from "../listitem/page";
-import Spinner from "../spinner/index";
+import Spinner from "../loading/Loading";
 import {
   Button,
   Modal,
@@ -9,6 +9,7 @@ import {
   ModalBody,
   ModalFooter,
   Form,
+  Input,
 } from "reactstrap";
 import { Alert } from "reactstrap";
 export default function Todolist() {
@@ -187,66 +188,63 @@ export default function Todolist() {
         </span>
       </Alert>
 
-      {show && <Spinner />}
-
-      {!show && (
-        <div id="container">
-          <h1 className="title">لیست تسک ها</h1>
-          <Form id="add-book" onSubmit={additem}>
-            <input
-              data-testid="add-input"
-              ref={(input) => input && input.focus()}
-              value={input}
-              onChange={changeinput}
-              type="text"
-              placeholder="تسک خود را اضافه کنید"
-            />
-            <Button
-              data-testid="add-btn"
-              onClick={additem}
-              type="submit"
-              className="button"
-            >
-              <p className="btn-text-plus">+</p>
-            </Button>
-          </Form>
-          <div id="book-list">
-            <ul data-testid="todolist">
-              {items.length === 0 && (
-                <p className="h4 my-2 p-2 bg-danger border rounded border-black">
-                  هیچ تسکی وجود ندارد
-                </p>
-              )}
-              {items.map((item, index) => {
-                return (
-                  <Todo
-                    key={index}
-                    title={item.title}
-                    deletehandler={handleShow}
-                  />
-                );
-              })}
-            </ul>
-          </div>
-
-          <div className="info">
-            <div className="info-text">
-              <p className="info-text-item">شما</p>
-              <p className="info-text-item" id="number">
-                {items.length}
+      <div id="container">
+        <h1 className="title">لیست تسک ها</h1>
+        <Form id="add-book" onSubmit={additem}>
+          <Input
+            className="bg-light"
+            data-testid="add-input"
+            ref={(input) => input && input.focus()}
+            value={input}
+            onChange={changeinput}
+            type="text"
+            placeholder="تسک خود را اضافه کنید"
+          />
+          <Button
+            data-testid="add-btn"
+            onClick={additem}
+            type="submit"
+            className="button"
+          >
+            <p className="btn-text-plus">+</p>
+          </Button>
+        </Form>
+        <div id="book-list">
+          <ul data-testid="todolist">
+            {items.length === 0 && (
+              <p className="h4 my-2 p-2 bg-danger border rounded border-black">
+                هیچ تسکی وجود ندارد
               </p>
-              <p className="info-text-item"> تسک انجام نشده دارید</p>
-            </div>
-            <Button
-              data-testid="delete-allbtn"
-              onClick={handleShow2}
-              id="clear-all"
-            >
-              حذف همه
-            </Button>
-          </div>
+            )}
+            {items.map((item, index) => {
+              return (
+                <Todo
+                  key={index}
+                  title={item.title}
+                  deletehandler={handleShow}
+                />
+              );
+            })}
+          </ul>
         </div>
-      )}
+
+        <div className="info">
+          <div className="info-text">
+            <p className="info-text-item">شما</p>
+            <p className="info-text-item" id="number">
+              {items.length}
+            </p>
+            <p className="info-text-item"> تسک انجام نشده دارید</p>
+          </div>
+          <Button
+            data-testid="delete-allbtn"
+            onClick={handleShow2}
+            id="clear-all"
+          >
+            حذف همه
+          </Button>
+        </div>
+      </div>
     </>
   );
 }

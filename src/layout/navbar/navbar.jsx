@@ -16,7 +16,7 @@ function App() {
         </NavLink>
       </NavItem>
       <NavItem className="NavItem">
-        <NavLink className="nav" href="/log-in/page">
+        <NavLink className="nav" href="/auth/page">
           ورود/ثبت نام
         </NavLink>
       </NavItem>

@@ -6,6 +6,7 @@ import "../assets/styles/font.css"
 import MyNavbar from "../layout/navbar/navbar";
 import { useEffect } from "react";
 import ErrorBoundary from "./../components/errorboundry/page";
+
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min.js");

@@ -1,11 +1,13 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import dynamic from "next/dynamic";
+import Loading from "@/components/loading/Loading";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-const Todolist = dynamic(() => import("./../components/list/page"));
-
+  const Todolist = dynamic(() => import("./../components/list/page"), {
+    loading: () => <Loading/>,
+  });
   return (
     <>
       <Head>

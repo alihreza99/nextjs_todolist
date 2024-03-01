@@ -1,6 +1,6 @@
 import Todolist from "../src/components/list/page";
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, userEvent } from "@testing-library/react";
 
 describe("todolist", () => {
   it("check if todo item got added", () => {
